@@ -1,0 +1,76 @@
+---
+// @ts-nocheck
+import { getCollection } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+
+export const prerender = true;
+
+interface Article {
+  id: string;
+  slug: string;
+  body: string;
+  collection: "writing";
+  data: {
+    title: string;
+    pubDate: Date;
+    description?: string;
+    category?: string;
+    author: string;
+    image?: {
+      url: string;
+      alt: string;
+    };
+    tags?: string[];
+    draft?: boolean;
+  };
+}
+// @ts-expect-error
+export async function getStaticPaths({ paginate }) {
+  const allPosts: Article[] = await getCollection("articles");
+  const publishedPosts = allPosts.filter((post) => !post.data.draft);
+  const sortedPages = publishedPosts.sort(
+    (a: Article, b: Article) =>
+      b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+  );
+
+  return paginate(sortedPages, { pageSize: 6 });
+}
+
+const { page }: any = Astro.props;
+
+const { prev, next } = page.url;
+const currentPage = page.currentPage;
+const totalPages = page.lastPage;
+---
+
+<MainLayout title="Two Slashes: Articles">
+  <Navbar />
+  <div class="flex flex-col mt-12">
+    <div>
+      <h4>Articles</h4>
+      <div class="flex flex-col justify-center mt-10 gap-10 pb-4">
+        {
+          page.data.map((post: Article) => {
+            return (
+              <a href={`/articles/${post.slug}`}>
+                <div class="flex flex-col justify-center">
+                  <p class="text-white leading-3">
+                    {new Date(post.data.pubDate).toLocaleDateString("en-US")}
+                  </p>
+                  <p class="text-2xl font-bold">{post.data.title}</p>
+                  <p>{post.data.description}</p>
+                </div>
+              </a>
+            );
+          })
+        }
+      </div>
+      <div class="flex items-center pt-10 gap-4 w-[20rem]">
+        Page {currentPage} of {totalPages}
+        <a href={prev}>Prev </a>
+        <a href={next}> Next </a>
+      </div>
+    </div>
+  </div>
+</MainLayout>

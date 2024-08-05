@@ -1,0 +1,56 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import "../styles/global.css";
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <!-- HTML Meta Tags -->
+    <meta name="description" content="Two Slashes - Aron Sweet" />
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://twoslashes.dev" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Two Slashes - Aron Sweet" />
+    <meta property="og:description" content="Two Slashes - Aron Sweet" />
+    <meta property="og:image" content="https://twoslashes.dev/meta_image.png" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="twoslashes.dev" />
+    <meta property="twitter:url" content="https://twoslashes.dev/" />
+    <meta name="twitter:title" content="Two Slashes - Aron Sweet" />
+    <meta name="twitter:description" content="Two Slashes - Aron Sweet" />
+    <meta
+      name="twitter:image"
+      content="https://twoslashes.dev/meta_image.png"
+    />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q4KE3S6R9L"
+    ></script>
+    <script>
+      // @ts-nocheck
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-Q4KE3S6R9L");
+    </script>
+
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body
+    class="w-full sm:w-[80%] md:w-[60%] xl:w-[35%] mx-auto bg-ts-dark text-neutral-300 px-6"
+  >
+    <slot />
+  </body>
+</html>

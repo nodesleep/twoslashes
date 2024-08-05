@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+
+const fetchPosts = async () => {
+  const allPosts = await getCollection("articles");
+  const publishedPosts = allPosts.filter((post) => !post.data.draft);
+  return publishedPosts
+    .sort(
+      (a, b) =>
+        new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+    )
+    .slice(0, 4);
+};
+
+const posts = await fetchPosts();
+---
+
+<div class="mt-6 mb-24">
+  <h6 class="font-bold">
+    <span class="font-light">recent</span> articles
+  </h6>
+  <ul class="flex flex-col gap-4">
+    {
+      posts.map((post) => (
+        <li>
+          <h6>
+            <a
+              href={`/articles/${post.slug}`}
+              class="transition-all duration-300"
+            >
+              {post.data.title}
+            </a>
+          </h6>
+          <div class="flex items-center text-lg text-neutral-400">
+            {new Date(post.data.pubDate).toLocaleDateString("en-US")} •
+            {post.data.description}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>

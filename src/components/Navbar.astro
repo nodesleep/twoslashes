@@ -1,0 +1,26 @@
+---
+import { linkArr } from "../data/links";
+---
+
+<div class="flex items-center h-16 py-4 w-full mx-auto">
+  <div class="flex items-center">
+    <a class="text-2xl font-light hover:text-neutral-300" href="/">
+      // two<span class="font-bold">slashes</span>
+    </a>
+  </div>
+  <div class="hidden md:flex items-center ml-auto">
+    <ul class="flex items-center uppercase font-medium text-sm gap-12">
+      {
+        linkArr.map((link) => {
+          return (
+            <li>
+              <a href={link.url} class="transition-all duration-300">
+                {link.name}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</div>

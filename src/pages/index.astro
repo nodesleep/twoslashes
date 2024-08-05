@@ -1,0 +1,42 @@
+---
+import AboutMe from "../components/AboutMe.astro";
+import ArticleList from "../components/ArticleList.astro";
+import Navbar from "../components/Navbar.astro";
+import ProjectTile from "../components/ProjectTile.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="Two Slashes: Home">
+  <div class="flex flex-col min-h-screen p-5 sm:p-0">
+    <Navbar />
+    <div class="my-12">
+      <AboutMe />
+    </div>
+    <div class="mt-12">
+      <div class="grid-cols-1">
+        <ArticleList />
+      </div>
+      <div class="grid-cols-1 my-12">
+        <h1 class="text-2xl font-bold">
+          <span class="font-light">notable</span> projects
+        </h1>
+        <div class="my-3 grid grid-cols-1 gap-2 md:gap-6" id="projects">
+          <ProjectTile
+            title="TornadoTrax"
+            url="https://images.unsplash.com/photo-1695605347871-25e723bef95d"
+            demo="https://tornadotrax.com"
+            code="https://github.com/nodesleep/tornadotrax"
+            description="TornadoTrax is a visual plotting tool referencing a collection of data provided by NOAA, containing every US tornado from 1950-2022. Along with plotted damage paths, the app provides analytics such a damage costs, injuries, and more."
+          />
+          <ProjectTile
+            title="Open Source Social Network"
+            url="https://images.unsplash.com/photo-1611001897293-561e0c30f938"
+            demo="https://www.opensource-socialnetwork.org/demo"
+            code="https://github.com/opensource-socialnetwork/opensource-socialnetwork/"
+            description="Open Source Social Network is a rapid-development social networking platform written in PHP. Users can download, deploy, and host their own social network resembling popular existing platforms."
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</MainLayout>

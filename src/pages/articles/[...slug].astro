@@ -1,0 +1,30 @@
+---
+// @ts-nocheck
+import { getCollection } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const entries = await getCollection("articles");
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+
+if (!entry) {
+  return Astro.redirect("/404");
+}
+const { Content } = await entry.render();
+---
+
+<MainLayout title=`Two Slashes: ${entry.data.title}` frontmatter={entry.data}>
+  <Navbar />
+  <div class="article-entry">
+    <Content />
+  </div>
+</MainLayout>
