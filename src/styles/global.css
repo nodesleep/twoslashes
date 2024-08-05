@@ -73,3 +73,15 @@ ol {
 .note {
   @apply my-3 text-sky-300;
 }
+
+.about-me {
+  @apply text-neutral-400 leading-7;
+}
+
+.about-me strong {
+  @apply text-white;
+}
+
+.about-me a {
+  @apply text-ts-600 hover:text-blue-200 transition-all duration-300;
+}
