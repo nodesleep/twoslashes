@@ -8,6 +8,10 @@
   scroll-behavior: smooth;
 }
 
+body {
+  @apply flex flex-col min-h-screen sm:w-[80%] md:w-[60%] xl:w-[35%] mx-auto bg-ts-dark text-neutral-300 p-6;
+}
+
 h1 {
   @apply text-7xl;
 }
@@ -50,11 +54,19 @@ p {
 }
 
 a {
-  @apply hover:text-ts-600;
+  @apply hover:text-ts-600 transition-all duration-300 cursor-pointer;
 }
 
 ol {
   @apply list-decimal font-medium text-purple-400 p-0 list-inside my-8;
+}
+
+footer {
+  @apply h-12 text-neutral-500 text-sm bg-ts-dark;
+}
+
+footer p {
+  @apply py-0;
 }
 
 .article-entry {
@@ -83,5 +95,5 @@ ol {
 }
 
 .about-me a {
-  @apply text-ts-600 hover:text-blue-200 transition-all duration-300;
+  @apply text-ts-600 hover:text-sky-300 transition-all duration-300;
 }

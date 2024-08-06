@@ -24,12 +24,7 @@ const posts = await fetchPosts();
       posts.map((post) => (
         <li>
           <h6>
-            <a
-              href={`/articles/${post.slug}`}
-              class="transition-all duration-300"
-            >
-              {post.data.title}
-            </a>
+            <a href={`/articles/${post.slug}`}>{post.data.title}</a>
           </h6>
           <div class="flex items-center text-lg text-neutral-400">
             {new Date(post.data.pubDate).toLocaleDateString("en-US")} •
@@ -38,5 +33,8 @@ const posts = await fetchPosts();
         </li>
       ))
     }
+    <li class="mt-5">
+      <a href="/articles">View all articles &rarr;</a>
+    </li>
   </ul>
 </div>

@@ -46,30 +46,28 @@ const totalPages = page.lastPage;
 
 <MainLayout title="Two Slashes: Articles">
   <Navbar />
-  <div class="flex flex-col mt-12">
-    <div>
-      <h4>Articles</h4>
-      <div class="flex flex-col justify-center mt-10 gap-10 pb-4">
+  <div class="flex flex-col">
+    <div class="mt-12">
+      <h6><span class="font-light">all</span> articles</h6>
+      <ul class="flex flex-col gap-4 my-12">
         {
-          page.data.map((post: Article) => {
-            return (
-              <a href={`/articles/${post.slug}`}>
-                <div class="flex flex-col justify-center">
-                  <p class="text-white leading-3">
-                    {new Date(post.data.pubDate).toLocaleDateString("en-US")}
-                  </p>
-                  <p class="text-2xl font-bold">{post.data.title}</p>
-                  <p>{post.data.description}</p>
-                </div>
-              </a>
-            );
-          })
+          page.data.map((post) => (
+            <li>
+              <h6>
+                <a href={`/articles/${post.slug}`}>{post.data.title}</a>
+              </h6>
+              <div class="flex items-center text-neutral-400">
+                {new Date(post.data.pubDate).toLocaleDateString("en-US")} •
+                {post.data.description}
+              </div>
+            </li>
+          ))
         }
-      </div>
-      <div class="flex items-center pt-10 gap-4 w-[20rem]">
+      </ul>
+      <div class="flex items-center gap-4 w-[20rem]">
         Page {currentPage} of {totalPages}
-        <a href={prev}>Prev </a>
-        <a href={next}> Next </a>
+        <a href={prev} class="transition-all duration-300">Prev </a>
+        <a href={next} class="transition-all duration-300"> Next </a>
       </div>
     </div>
   </div>

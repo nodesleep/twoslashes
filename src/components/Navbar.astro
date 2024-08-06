@@ -1,5 +1,6 @@
 ---
 import { linkArr } from "../data/links";
+import { Icon } from "astro-icon/components";
 ---
 
 <div class="flex items-center h-16 py-4 w-full mx-auto">
@@ -8,19 +9,24 @@ import { linkArr } from "../data/links";
       // two<span class="font-bold">slashes</span>
     </a>
   </div>
-  <div class="hidden md:flex items-center ml-auto">
-    <ul class="flex items-center uppercase font-medium text-sm gap-12">
+  <div class="sm:flex sm:items-center ml-auto hidden" id="nav">
+    <ul
+      class="flex flex-col sm:flex-row sm:items-center uppercase font-medium text-sm gap-4 sm:gap-12"
+    >
       {
         linkArr.map((link) => {
           return (
             <li>
-              <a href={link.url} class="transition-all duration-300">
-                {link.name}
-              </a>
+              <a href={link.url}>{link.name}</a>
             </li>
           );
         })
       }
     </ul>
   </div>
+  <Icon
+    name="hamburger"
+    class="text-lg block sm:hidden ml-auto"
+    id="hamburger"
+  />
 </div>
