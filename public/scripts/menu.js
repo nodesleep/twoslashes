@@ -1,14 +1,20 @@
 function toggleNav() {
   const btn = document.getElementById("hamburger");
+  const nav = document.getElementById("nav");
+
   if (btn) {
     btn.addEventListener("click", () => {
-      const nav = document.getElementById("nav");
-      if (nav) {
-        nav.classList.toggle("hidden");
+      if (nav.classList.contains("hidden")) {
+        nav.classList.remove("hidden");
+      } else {
+        nav.classList.add("hidden");
       }
     });
+  } else {
+    if (!btn) console.log("Hamburger button not found");
   }
 }
 
-document.addEventListener("DOMContentLoaded", toggleNav);
-document.addEventListener("astro:page-load", toggleNav);
+document.addEventListener("astro:page-load", () => {
+  toggleNav();
+});
