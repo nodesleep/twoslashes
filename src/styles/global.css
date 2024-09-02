@@ -9,7 +9,7 @@
 }
 
 body {
-  @apply flex flex-col min-h-screen sm:w-[80%] md:w-[60%] xl:w-[35%] mx-auto bg-ts-dark text-neutral-300 p-6;
+  @apply flex flex-col min-h-screen sm:w-[80%] md:w-[60%] xl:w-[35%] mx-auto p-6 dark:bg-ts-dark dark:text-neutral-300;
 }
 
 h1 {
