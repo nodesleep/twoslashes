@@ -87,11 +87,11 @@ ol {
 }
 
 .about-me {
-  @apply text-neutral-400 leading-7;
+  @apply text-neutral-900 dark:text-neutral-400 leading-7;
 }
 
 .about-me strong {
-  @apply text-white;
+  @apply text-black dark:text-white;
 }
 
 .about-me a {
